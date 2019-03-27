@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../tabla-element/tabla-element.html">
+<link rel="import" href="../buscar-element/buscar-element.html">
 
 <dom-module id="parent-element">
   <template>
@@ -7,7 +9,9 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <buscar-element title="[[objetoProp.title]]" btn-txt="[[objetoProp.btnTexto]]" place-holder="[[objetoProp.placeHolder]]" on-buscar="_showVar"></buscar-element>
+    <br>
+    <tabla-element datos=[[datos]]></tabla-element>
   </template>
 
   <script>
@@ -23,11 +27,24 @@
       static get is() { return 'parent-element'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'parent-element'
+          objetoProp:{
+            type:Object,
+            value:{title:'NOMBRE', btnTexto:'Agregar', placeHolder:'Teclea Nombre'}
+          },
+          datos: {
+            type: Array,
+            value(){
+              return[
+                {name:"Francisco"}
+              ]
+            }
           }
         };
+      }
+      _showVar(e){
+        console.log(e.detail);
+        this.push('datos', {"name":e.detail});
+        //this.syncArrays();
       }
     }
 
