@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="parent-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `parent-element`
+     * contenedor de tabla de resultados y buscador
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ParentElement extends Polymer.Element {
+      static get is() { return 'parent-element'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'parent-element'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ParentElement.is, ParentElement);
+  </script>
+</dom-module>
